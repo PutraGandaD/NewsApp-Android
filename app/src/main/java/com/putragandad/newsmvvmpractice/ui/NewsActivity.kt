@@ -3,9 +3,7 @@ package com.putragandad.newsmvvmpractice.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.navigation.NavigationBarView
 import com.putragandad.newsmvvmpractice.R
 import com.putragandad.newsmvvmpractice.databinding.ActivityNewsBinding
 
