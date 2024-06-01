@@ -10,7 +10,7 @@ import com.putragandad.newsmvvmpractice.ui.NewsActivity
 import com.putragandad.newsmvvmpractice.ui.viewmodels.NewsViewModel
 
 class ArticleFragment : Fragment() {
-    private lateinit var viewModel: NewsViewModel
+    lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,6 +22,5 @@ class ArticleFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = (activity as NewsActivity).viewModel
     }
 }

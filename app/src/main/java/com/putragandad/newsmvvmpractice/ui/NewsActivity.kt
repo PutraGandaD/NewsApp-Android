@@ -15,8 +15,6 @@ import com.putragandad.newsmvvmpractice.ui.viewmodels.NewsViewModelFactory
 class NewsActivity : AppCompatActivity() {
     private lateinit var binding: ActivityNewsBinding
 
-    lateinit var viewModel: NewsViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityNewsBinding.inflate(layoutInflater)
@@ -24,9 +22,5 @@ class NewsActivity : AppCompatActivity() {
 
         val bottomNavController = this.findNavController(R.id.newsNavHostFragment)
         binding.bottomNavigation.setupWithNavController(bottomNavController)
-
-        val newsRepository = NewsRepository(ArticleDatabase(this))
-        val viewModelFactory = NewsViewModelFactory(newsRepository)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(NewsViewModel::class.java)
     }
 }
