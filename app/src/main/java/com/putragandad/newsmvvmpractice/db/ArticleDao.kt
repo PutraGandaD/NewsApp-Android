@@ -14,7 +14,7 @@ interface ArticleDao {
     // Update or insert the article
     suspend fun upsert(article: Article) : Long
 
-    @Query("SELECT * FROM articles")
+    @Query("SELECT * FROM articles ORDER BY id DESC")
     // Get the most updated Article with LiveData
     fun getAllArticles() : LiveData<List<Article>>
 

@@ -19,12 +19,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_saved_news"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         tools:listitem="@layout/item_article_preview"
         tools:itemCount="2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/etSearchSavedNews" />
+        app:layout_constraintTop_toBottomOf="@id/etSearchSavedNews"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
