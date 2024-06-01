@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.webkit.WebViewClient
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.snackbar.Snackbar
 import com.putragandad.newsmvvmpractice.R
 import com.putragandad.newsmvvmpractice.databinding.FragmentArticleBinding
 import com.putragandad.newsmvvmpractice.databinding.FragmentBreakingNewsBinding
@@ -44,6 +45,11 @@ class ArticleFragment : Fragment() {
         binding.webView.apply {
             webViewClient = WebViewClient()
             loadUrl(article.url)
+        }
+
+        binding.fab.setOnClickListener {
+            viewModel.saveArticle(article)
+            Snackbar.make(view, "Article saved successfully!", Snackbar.LENGTH_SHORT).show()
         }
     }
 

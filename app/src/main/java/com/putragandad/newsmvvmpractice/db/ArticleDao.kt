@@ -20,4 +20,7 @@ interface ArticleDao {
 
     @Delete
     suspend fun deleteArticle(article: Article)
+
+    @Query("SELECT * FROM articles WHERE title LIKE '%' || :query || '%'")
+    suspend fun searchSavedNews(query: String): List<Article>
 }
