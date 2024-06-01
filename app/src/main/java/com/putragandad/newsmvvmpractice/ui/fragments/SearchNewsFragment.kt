@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.putragandad.newsmvvmpractice.R
 import com.putragandad.newsmvvmpractice.adapters.NewsAdapter
@@ -49,6 +50,16 @@ class SearchNewsFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(NewsViewModel::class.java)
 
         setUpRecyclerView()
+
+        newsAdapter.setOnItemClickListener {
+            val bundle = Bundle().apply {
+                putSerializable(Constants.ARTICLE_BUNDLE, it)
+            }
+            findNavController().navigate(
+                R.id.action_searchNewsFragment_to_articleFragment,
+                bundle
+            )
+        }
 
         var job: Job? = null
         binding.etSearch.addTextChangedListener{ editable ->

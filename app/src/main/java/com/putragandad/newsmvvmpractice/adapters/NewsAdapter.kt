@@ -1,5 +1,6 @@
 package com.putragandad.newsmvvmpractice.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -43,6 +44,8 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         )
     }
 
+    private var onItemClickListener: ((Article) -> Unit)? = null
+
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position] // get current article from differ
 
@@ -53,8 +56,11 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             holder.tvPreviewArticle.text = article.description
             holder.tvDatesArticle.text = article.publishedAt
 
-            setOnItemClickListener {
-                onItemClickListener?.let { it(article) }
+            setOnClickListener {
+                onItemClickListener?.let {
+                    Log.d("ARTICLE_CLICKED_LOG", article.toString())
+                    it(article)
+                }
             }
         }
     }
@@ -62,8 +68,6 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-
-    private var onItemClickListener: ((Article) -> Unit)? = null
 
     fun setOnItemClickListener(listener: (Article) -> Unit) {
         onItemClickListener = listener

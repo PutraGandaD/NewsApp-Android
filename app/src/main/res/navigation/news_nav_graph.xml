@@ -9,7 +9,11 @@
         android:id="@+id/articleFragment"
         android:name="com.putragandad.newsmvvmpractice.ui.fragments.ArticleFragment"
         android:label="fragment_article"
-        tools:layout="@layout/fragment_article" />
+        tools:layout="@layout/fragment_article" >
+        <argument
+            android:name="article"
+            app:argType="com.putragandad.newsmvvmpractice.models.Article" />
+    </fragment>
     <fragment
         android:id="@+id/breakingNewsFragment"
         android:name="com.putragandad.newsmvvmpractice.ui.fragments.BreakingNewsFragment"

@@ -5,22 +5,50 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebViewClient
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.navArgs
 import com.putragandad.newsmvvmpractice.R
+import com.putragandad.newsmvvmpractice.databinding.FragmentArticleBinding
+import com.putragandad.newsmvvmpractice.databinding.FragmentBreakingNewsBinding
+import com.putragandad.newsmvvmpractice.db.ArticleDatabase
+import com.putragandad.newsmvvmpractice.repositories.NewsRepository
 import com.putragandad.newsmvvmpractice.ui.NewsActivity
 import com.putragandad.newsmvvmpractice.ui.viewmodels.NewsViewModel
+import com.putragandad.newsmvvmpractice.ui.viewmodels.NewsViewModelFactory
 
 class ArticleFragment : Fragment() {
-    lateinit var viewModel: NewsViewModel
+    private var _binding: FragmentArticleBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var viewModel: NewsViewModel
+    val args: ArticleFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_article, container, false)
+        _binding = FragmentArticleBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val newsRepository = NewsRepository(ArticleDatabase(requireActivity()))
+        val viewModelFactory = NewsViewModelFactory(newsRepository)
+        viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(NewsViewModel::class.java)
+
+        val article = args.article // get from safeargs
+
+        binding.webView.apply {
+            webViewClient = WebViewClient()
+            loadUrl(article.url)
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
