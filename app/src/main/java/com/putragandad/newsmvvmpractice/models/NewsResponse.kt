@@ -1,4 +1,4 @@
-package com.putragandad.newsmvvmpractice
+package com.putragandad.newsmvvmpractice.models
 
 data class NewsResponse(
     val articles: List<Article>,

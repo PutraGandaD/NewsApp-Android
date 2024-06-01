@@ -1,6 +1,6 @@
 package com.putragandad.newsmvvmpractice.api
 
-import com.putragandad.newsmvvmpractice.NewsResponse
+import com.putragandad.newsmvvmpractice.models.NewsResponse
 import com.putragandad.newsmvvmpractice.util.Constants
 import retrofit2.Response
 import retrofit2.http.GET
