@@ -27,3 +27,6 @@ Simple News App for Android utilizing API from https://newsapi.org with MVVM Arc
 ## 3rd party library used in this app 
 - [x] Retrofit
 - [x] Glide
+
+## References
+- https://www.youtube.com/playlist?list=PLQkwcJG4YTCRF8XiCRESq1IFFW8COlxYJ (Thanks to Philipp Lackner)
