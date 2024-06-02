@@ -13,6 +13,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import com.putragandad.newsmvvmpractice.NewsApplication
 import com.putragandad.newsmvvmpractice.R
 import com.putragandad.newsmvvmpractice.adapters.NewsAdapter
 import com.putragandad.newsmvvmpractice.databinding.FragmentBreakingNewsBinding
@@ -43,7 +45,7 @@ class BreakingNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val newsRepository = NewsRepository(ArticleDatabase(requireActivity()))
-        val viewModelFactory = NewsViewModelFactory(newsRepository)
+        val viewModelFactory = NewsViewModelFactory(requireActivity().application, newsRepository)
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(NewsViewModel::class.java)
 
         setUpRecyclerView()
@@ -64,6 +66,7 @@ class BreakingNewsFragment : Fragment() {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
+                        hideOfflineStatus()
                         newsAdapter.differ.submitList(newsResponse.articles.toList())
                         val totalPages = newsResponse.totalResults / Constants.QUERY_PAGE_SIZE + 2
                         isLastPage = viewModel.breakingNewsPage == totalPages
@@ -73,6 +76,8 @@ class BreakingNewsFragment : Fragment() {
                     hideProgressBar()
                     response.message?.let { message ->
                         Log.d(Constants.BREAKING_NEWS_LOGS_TAG, "An error occured : $message")
+                        Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG).show()
+                        showOfflineStatus()
                     }
                 }
                 is Resource.Loading -> {
@@ -95,6 +100,19 @@ class BreakingNewsFragment : Fragment() {
     private fun showProgressBar() {
         binding.paginationProgressBar.visibility = View.VISIBLE
         isLoading = true
+    }
+
+    private fun hideOfflineStatus() {
+        binding.tvOffline.visibility = View.GONE
+        binding.btnOffline.visibility = View.GONE
+    }
+
+    private fun showOfflineStatus() {
+        binding.tvOffline.visibility = View.VISIBLE
+        binding.btnOffline.visibility = View.VISIBLE
+        binding.btnOffline.setOnClickListener {
+            viewModel.getBreakingNews("us")
+        }
     }
 
     var isLoading = false

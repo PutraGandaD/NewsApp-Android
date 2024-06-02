@@ -37,7 +37,7 @@ class ArticleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val newsRepository = NewsRepository(ArticleDatabase(requireActivity()))
-        val viewModelFactory = NewsViewModelFactory(newsRepository)
+        val viewModelFactory = NewsViewModelFactory(requireActivity().application, newsRepository)
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(NewsViewModel::class.java)
 
         val article = args.article // get from safeargs

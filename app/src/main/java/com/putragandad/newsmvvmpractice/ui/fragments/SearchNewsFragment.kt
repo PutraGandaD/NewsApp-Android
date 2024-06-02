@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.putragandad.newsmvvmpractice.R
 import com.putragandad.newsmvvmpractice.adapters.NewsAdapter
 import com.putragandad.newsmvvmpractice.databinding.FragmentBreakingNewsBinding
@@ -46,7 +47,7 @@ class SearchNewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val newsRepository = NewsRepository(ArticleDatabase(requireActivity()))
-        val viewModelFactory = NewsViewModelFactory(newsRepository)
+        val viewModelFactory = NewsViewModelFactory(requireActivity().application, newsRepository)
         viewModel = ViewModelProvider(requireActivity(), viewModelFactory).get(NewsViewModel::class.java)
 
         setUpRecyclerView()
@@ -88,6 +89,7 @@ class SearchNewsFragment : Fragment() {
                     hideProgressBar()
                     response.message?.let { message ->
                         Log.d(Constants.SEARCH_NEWS_LOGS_TAG, "An error occured : $message")
+                        Snackbar.make(view, "No Internet Connection", Snackbar.LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading -> {
