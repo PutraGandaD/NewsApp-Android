@@ -12,5 +12,7 @@ class Constants {
 
         // Bundle key
         const val ARTICLE_BUNDLE = "article"
+
+        const val QUERY_PAGE_SIZE = 20
     }
 }
