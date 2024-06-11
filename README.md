@@ -1,6 +1,9 @@
 # Simple News App
 Simple News App for Android utilizing API from https://newsapi.org with MVVM Architecture.
 
+## Screenshot
+![Untitled design (1)](https://github.com/PutraGandaD/SimpleNewsApp/assets/54593964/9e417e13-c8e6-41e1-91a7-9381c8736fff)
+
 ## Tech Stack
 - [x] Using Material Design 3 by Google (https://m3.material.io)
 - [x] Using Android Jetpack Architecture Components
@@ -8,14 +11,13 @@ Simple News App for Android utilizing API from https://newsapi.org with MVVM Arc
 - [x] Room Database usage as Local Database for Saved Article
 - [x] WebView usage for loading webpages directly in the app
 
-## Feature of the app
-- [x] Swipe to Delete for Saved Article
-- [x] WebView for reading article directly in the app
+## Architecture Overview
+![1_ANRFkZy-PgZwmSevU1BKbw](https://github.com/PutraGandaD/SimpleNewsApp/assets/54593964/88b1e7c2-d82d-4677-9f58-6bc62ac73370)
 
-## Screenshot
-![Untitled design(7)](https://github.com/PutraGandaD/SimpleNewsApp/assets/54593964/63198c50-e78c-4e87-a6af-61c805bb8b17)
-![Untitled design(8)](https://github.com/PutraGandaD/SimpleNewsApp/assets/54593964/a967f69d-15e3-40a9-8d10-adba0965adb4)
-![Untitled design(9)](https://github.com/PutraGandaD/SimpleNewsApp/assets/54593964/059a45e7-edd0-4d6a-8727-d6202ebf6ec2)
+## Feature of the app
+- [x] WebView for reading article directly in the app
+- [x] Add Article to "Saved Article"
+- [x] Swipe to Delete for Saved Article 
 
 ## WIP
 - [ ] Dependency Injection
@@ -30,3 +32,4 @@ Simple News App for Android utilizing API from https://newsapi.org with MVVM Arc
 
 ## References
 - https://www.youtube.com/playlist?list=PLQkwcJG4YTCRF8XiCRESq1IFFW8COlxYJ (Thanks to Philipp Lackner)
+- https://sanjanahumanintech.medium.com/mvvm-with-clean-architecture-in-react-native-a-detailed-guide-e5e25b815db0 (Thanks to Sanjana for MVVM Architecture Overview Charts)
